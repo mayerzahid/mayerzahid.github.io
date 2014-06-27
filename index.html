@@ -1,8 +1,144 @@
 <!DOCTYPE html>
+<head>
+<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link href="style.css" rel="stylesheet">
-<html>
+  <title>Mayer Zahid</title>
+  <meta charset="utf-8">
+<script>
+var ul;
+var li_items; 
+var li_number;
+var image_number = 0;
+var slider_width = 0;
+var image_width;
+var current = 0;
+function init(){	
+	ul = document.getElementById('image_slider');
+	li_items = ul.children;
+	li_number = li_items.length;
+	for (i = 0; i < li_number; i++){
+		// nodeType == 1 means the node is an element.
+		// in this way it's a cross-browser way.
+		//if (li_items[i].nodeType == 1){
+			//clietWidth and width???
+			image_width = li_items[i].childNodes[0].clientWidth;
+			slider_width += image_width;
+			image_number++;
+	}
+	
+	ul.style.width = parseInt(slider_width) + 'px';
+	slider(ul);
+}
+
+function slider(){		
+		animate({
+			delay:17,
+			duration: 3000,
+			delta:function(p){return Math.max(0, -1 + 2 * p)},
+			step:function(delta){
+					ul.style.left = '-' + parseInt(current * image_width + delta * image_width) + 'px';
+				},
+			callback:function(){
+				current++;
+				if(current < li_number-1){
+					slider();
+				}
+				else{
+					var left = (li_number - 1) * image_width;					
+					setTimeout(function(){goBack(left)},2000); 				
+					setTimeout(slider, 4000);
+				}
+			}
+		});
+}
+function goBack(left_limits){
+	current = 0;	
+	setInterval(function(){
+		if(left_limits >= 0){
+			ul.style.left = '-' + parseInt(left_limits) + 'px';
+			left_limits -= image_width / 10;
+		}	
+	}, 17);
+}
+function animate(opts){
+	var start = new Date;
+	var id = setInterval(function(){
+		var timePassed = new Date - start;
+		var progress = timePassed / opts.duration
+		if(progress > 1){
+			progress = 1;
+		}
+		var delta = opts.delta(progress);
+		opts.step(delta);
+		if (progress == 1){
+			clearInterval(id);
+			opts.callback();
+		}
+	}, opts.dalay || 17);
+}
+window.onload = init;
+</script>
+</head>
+<div class="top">
+ <figure>
+  <img src="https://lh5.googleusercontent.com/-VvfDdDMEoMg/USVqw2VuidI/AAAAAAAABNQ/5gw3QOu5AXE/s930-no/Me%2526Dave.jpg" border="5" width="250" height="250">
+   <figcaption>I snuck in to 500startups HQ to pitch Dave.</figcaption>
+ </figure>
+</div>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+		<div class="container">
+			<div class="image-slider-wrapper">
+				<ul id="image_slider">
+					<li><img src="http://www.motorhomeroadtrip.com/assets/Uploads/_resampled/SetWidth760-slovenia-bledisland-760x290.jpg"></li>
+					<li><img src="http://www.ibexexpeditions.com/images/riding_safaris/flash_banner/3.jpg"></li>
+					<li><img src="http://www.motorhomeroadtrip.com/assets/Uploads/_resampled/SetWidth760-lasvegas89new.jpg"></li>
+				</ul>			
+				<div class="pager">
+				</div>
+			</div>
+		</div>
+  <header>
+    <h1>About Mayer Zahid</h1>
+    <ul>
+      <li><a href="http://prolifictimes.com/">Blog</a></li>
+      <li><a href="https://twitter.com/MayerZahid">Twitter</a></li>
+      <li><a href="http://goodfoodgoodcompany.tumblr.com/">GFGC</a></li>
+      <li><a href="https://www.linkedin.com/in/mayerzahid">linkedin</a></li>
+
+    </ul>
+  </header>
+  <img src="https://pbs.twimg.com/profile_images/460149174625792000/lMK3tHLv_200x200.jpeg" alt="Mayer Zahid" border="5" align="center"> 
+  <p>I'm a keen student of all things business. An aspiring entrepreneur, that loves reading and thinking about new ideas that can change the world. I love beautiful design and products that are effective and efficient. </p>
 </body>
-</html>
+<h2>
+Lovaash, Co-Founder/COO, Berkeley CA	January 2013 – May 2014
+•	A platform that connects consumers, enterprises, and interior designers to the world’s best and most unique artists.		
+•	Handled all operations, marketing, finances, and product design.
+•	Established partnership with large print company that handled all our printing, framing, & shipping at below industry rate.
+•	Responsible for mockups and UI/UX design, optimized for user engagement.
+•	Initiated landing page campaign with built-in reward system that incentivized sharing, collected 13,121 email addresses. A/B tested messaging, design, and created different renditions of landing pages for specific customer demographics.
+•	Spearheaded email marketing campaign using MailChimp and landing pages that recruited 756 artists, A/B tested to increase conversion. 
+•	Created customer feedback loop that helped fine tune design and add features to product roadmap via surveys and focus groups.
+•	Responsible for client services and customer product satisfaction via phone, email, & CRM.
+•	Developed relationships with interior design firms and independent designers that purchased from our selection of art.
+•	Monetized product and turned business cash flow positive in 1 year.
+•	Winners of the 2013 UC Davis Entrepreneurship Fund.
+•	Semi-Finalists in the 2013 UC Davis Graduate School of Management Big Bang Business Plan Competition.
+<br>
+<br>
+Freelance Consultant 	November 2012 – Present 
+•	Provide freelance design, marketing, and business strategy services for several companies including: Wave Perfect, SeriesC, ArtKick, SlingBox, GreekDrop, Peop1e, and Sierra Nevada EPL.
+•	Provide solutions to clients after assessing their business, analyzing provided data, and evaluating market conditions.
+•	Made email marketing campaign for client which helped them grow their email list from 10,000 to 22,000.
+•	Created an infographic for SlingBox to show customer activity in interesting ways by visualizing usage data.
+•	Created market research report for Wave Perfect by analyzing data on customer demographics, preferences, needs, and buying habits to identify potential markets and factors affecting product demand. Used SurveyMonkey, landing pages, and in person surveys to collect data. Helped Wave Perfect decide who their potential customers were and what channels are best to target them.
+</h2>
+<div class="contact">
+	mayerzahid@gmail.com | 916.212.0610
+</div>
+<div class="bottom">
+ <figure>
+  <img src="https://lh3.googleusercontent.com/5WtlAD-MZxoW13HfFeWSYgbjb-NXLFtewN6_bNWR2Jg=s930-no" border="5" width="250" height="250"> 
+   <figcaption>I begged Jason to get in the Launch Demo pit 2013.</figcaption>
+ </figure>
+</div>
